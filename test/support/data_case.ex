@@ -16,7 +16,7 @@ defmodule LiveViewDemo.DataCase do
 
   using do
     quote do
-      alias LiveViewDemo.Repo
+      # alias LiveViewDemo.Repo
 
       import Ecto
       import Ecto.Changeset
@@ -26,11 +26,11 @@ defmodule LiveViewDemo.DataCase do
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(LiveViewDemo.Repo)
+    # :ok = Ecto.Adapters.SQL.Sandbox.checkout(LiveViewDemo.Repo)
 
-    unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(LiveViewDemo.Repo, {:shared, self()})
-    end
+    # unless tags[:async] do
+    #   Ecto.Adapters.SQL.Sandbox.mode(LiveViewDemo.Repo, {:shared, self()})
+    # end
 
     :ok
   end
