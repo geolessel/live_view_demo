@@ -2,6 +2,6 @@ defmodule LiveViewDemoWeb.PageController do
   use LiveViewDemoWeb, :controller
 
   def index(conn, _params) do
-    render(conn, "index.html")
+    Phoenix.LiveView.Controller.live_render(conn, LiveViewDemoWeb.PageLive, session: %{})
   end
 end
