@@ -2,3 +2,18 @@
 
 @import "./phoenix.css";
 @import "../../deps/phoenix_live_view/assets/css/live_view.css";
+
+.results {
+    display: flex;
+    margin-bottom: 2rem;
+}
+
+.results--label {
+    width: 150px;
+    border-right: 2px solid #ccc;
+}
+
+.results--text {
+    flex: 1;
+    padding-left: 2rem;
+}

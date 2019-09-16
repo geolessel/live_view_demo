@@ -8,12 +8,15 @@ defmodule LiveViewDemoWeb.PageLive do
   end
 
   def mount(_session, socket) do
-    {:ok, assign(socket, %{result: "", pattern: "", input: "", error: ""})}
+    {:ok, assign(socket, %{result: [], pattern: "", input: "", error: ""})}
   end
 
+  def handle_event("form_update", %{"regex" => %{"pattern" => ""}}, socket),
+    do: {:noreply, socket}
+
   def handle_event("form_update", %{"regex" => params}, socket) do
-    pattern = Map.get(params, "pattern", "")
-    input = Map.get(params, "input", "")
+    pattern = Map.get(params, "pattern")
+    input = Map.get(params, "input")
 
     case Regex.compile(pattern) do
       {:ok, compiled} ->
