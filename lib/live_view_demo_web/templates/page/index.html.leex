@@ -14,43 +14,23 @@
 
 <div>
   <h1>Results</h1>
-  <div class="results">
-    <div class="results--label">
-      <h2>Full</h2>
+  <%= if @regex do %>
+    <div class="results">
+      <div class="results--label">
+        <h2>Full</h2>
+      </div>
+      <div class="results--text">
+        <%= full_results(@input, @regex) %>
+      </div>
     </div>
-    <div class="results--text">
-      <%=
-        @input
-        |> String.graphemes()
-        |> Enum.with_index()
-        |> Enum.map(fn {ch, i} ->
-          cond do
-            Enum.find(List.flatten(@result), fn {idx, length} -> Enum.member?(idx..(idx+length-1), i) end) ->
-              content_tag(:span, ch, style: "color: green; text-decoration: underline;")
-            ch == "\n" -> tag(:br)
-            true -> ch
-          end
-        end)
-      %>
-    </div>
-  </div>
 
-  <div class="results">
-    <div class="results--label">
-      <h2>Matches</h2>
+    <div class="results">
+      <div class="results--label">
+        <h2>Matches</h2>
+      </div>
+      <div class="results--text">
+        <%= matches(@input, @regex) %>
+      </div>
     </div>
-    <div class="results--text">
-      <%=
-        @result
-        |> List.flatten()
-        |> Enum.with_index()
-        |> Enum.map(fn {{idx, length}, i} ->
-          match =
-            @input
-            |> String.slice(idx..(idx+length-1))
-          content_tag(:div, "[#{i}]: #{match}")
-        end)
-      %>
-    </div>
-  </div>
+  <% end %>
 </div>
