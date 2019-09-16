@@ -37,5 +37,14 @@ defmodule LiveViewDemoWeb.PageView do
     end)
   end
 
+  def named_captures(input, regex) do
+    regex
+    |> Regex.named_captures(input)
+    |> Enum.to_list()
+    |> Enum.map(fn {k, v} ->
+      content_tag(:div, "#{k} => #{v}")
+    end)
+  end
+
   def run_regex(regex, input), do: Regex.scan(regex, input, return: :index)
 end
