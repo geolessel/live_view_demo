@@ -33,7 +33,7 @@
       </div>
     </div>
 
-    <%= if Regex.named_captures(@regex, @input) do %>
+    <%= if length(Regex.names(@regex)) > 0 do %>
       <div class="results">
         <div class="results--label">
           <h2>Named Captures</h2>
