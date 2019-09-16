@@ -1,29 +1,29 @@
 <%= f = form_for :regex, "#", [phx_change: :form_update] %>
-<form phx-change="form_update">
-  <div style="display: flex; width: 100%;">
-    <div style="flex: 1;">
-      <label for="pattern">Regex</label>
-      <%= text_input(f, :pattern, value: @pattern) %>
-    </div>
-    <div style="flex: 1;">
-      <label for="input">Input</label>
-      <%= textarea(f, :input, value: @input) %>
-    </div>
+<div style="display: flex; width: 100%;">
+  <div style="flex: 1;">
+    <label for="pattern">Regex</label>
+    <%= text_input(f, :pattern, value: @pattern) %>
+    <%= @error %>
   </div>
 
-  <div>
-    <h1>Results</h1>
-    <%=
-      @input
-      |> String.graphemes()
-      |> Enum.with_index()
-      |> Enum.map(fn {ch, i} ->
-        if Enum.find(@result, fn [{idx, length}] -> Enum.member?(idx..(idx+length-1), i) end) do
-          content_tag(:span, ch, style: "color: green; text-decoration: underline;")
-        else
-          ch
-        end
-      end)
-    %>
+  <div style="flex: 1;">
+    <label for="input">Input</label>
+    <%= textarea(f, :input, value: @input) %>
   </div>
-</form>
+</div>
+
+<div>
+  <h1>Results</h1>
+  <%=
+    @input
+    |> String.graphemes()
+    |> Enum.with_index()
+    |> Enum.map(fn {ch, i} ->
+      if Enum.find(List.flatten(@result), fn {idx, length} -> Enum.member?(idx..(idx+length-1), i) end) do
+        content_tag(:span, ch, style: "color: green; text-decoration: underline;")
+      else
+        ch
+      end
+    end)
+  %>
+</div>
