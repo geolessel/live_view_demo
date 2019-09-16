@@ -2,7 +2,7 @@ defmodule LiveViewDemoWeb.PageView do
   use LiveViewDemoWeb, :view
 
   def full_results(input, regex) do
-    regex_result = run_regex(regex, input)
+    regex_result = Regex.scan(regex, input, return: :index)
 
     input
     |> String.graphemes()
@@ -25,14 +25,10 @@ defmodule LiveViewDemoWeb.PageView do
 
   def matches(input, regex) do
     regex
-    |> run_regex(input)
+    |> Regex.scan(input)
     |> List.flatten()
     |> Enum.with_index()
-    |> Enum.map(fn {{idx, length}, i} ->
-      match =
-        input
-        |> String.slice(idx..(idx + length - 1))
-
+    |> Enum.map(fn {match, i} ->
       content_tag(:div, "[#{i}]: #{match}")
     end)
   end
@@ -45,6 +41,4 @@ defmodule LiveViewDemoWeb.PageView do
       content_tag(:div, "#{k} => #{v}")
     end)
   end
-
-  def run_regex(regex, input), do: Regex.scan(regex, input, return: :index)
 end
