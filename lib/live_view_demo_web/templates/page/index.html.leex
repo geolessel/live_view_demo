@@ -1,47 +1,47 @@
 <%= f = form_for :regex, "#", [phx_change: :form_update] %>
-<div style="display: flex; width: 100%;">
-  <div style="flex: 1;">
-    <label for="pattern">Regex</label>
-    <%= text_input(f, :pattern, value: @pattern) %>
-    <%= @error %>
-  </div>
+<div class="container">
+  <div class="content">
+    <header>
+      <h1>Regex Checker</h1>
+    </header>
 
-  <div style="flex: 1;">
-    <label for="input">Input</label>
-    <%= textarea(f, :input, value: @input) %>
-  </div>
-</div>
+    <section class="form">
+      <div class="form-group">
+        <label>Regex:</label>
+        <%= textarea(f, :pattern, value: @pattern) %>
+      </div>
 
-<div>
-  <h1>Results</h1>
-  <%= if @regex do %>
-    <div class="results">
-      <div class="results--label">
-        <h2>Full</h2>
+      <div class="form-group">
+        <label>Input:</label>
+        <%= textarea(f, :input, value: @input) %>
       </div>
-      <div class="results--text">
-        <%= full_results(@input, @regex) %>
-      </div>
-    </div>
+    </section>
 
-    <div class="results">
-      <div class="results--label">
-        <h2>Matches</h2>
-      </div>
-      <div class="results--text">
-        <%= matches(@input, @regex) %>
-      </div>
-    </div>
+    <div class="alert"><%= @error %></div>
 
-    <%= if length(Regex.names(@regex)) > 0 do %>
-      <div class="results">
-        <div class="results--label">
-          <h2>Named Captures</h2>
+    <%= if @regex do %>
+      <section class="results">
+        <h2>Results</h2>
+        <div class="results-display">
+          <h3>Full:</h3>
+          <p><%= full_results(@input, @regex) %></p>
+
+          <h3>Matches:</h3>
+          <p><%= matches(@input, @regex) %></p>
+
+          <%= if length(Regex.names(@regex)) > 0 do %>
+            <h3>Named Captures:</h3>
+            <p><%= named_captures(@input, @regex) %></p>
+          <% end %>
         </div>
-        <div class="results--text">
-          <%= named_captures(@input, @regex) %>
-        </div>
-      </div>
+      </section>
     <% end %>
-  <% end %>
+
+    <footer>
+      <nav>
+        <a href="/about/">About</a>
+      </nav>
+      <p>© 2019 Geoffrey Lessel</p>
+    </footer>
+  </div>
 </div>

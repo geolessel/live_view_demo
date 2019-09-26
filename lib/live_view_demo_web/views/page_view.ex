@@ -12,7 +12,7 @@ defmodule LiveViewDemoWeb.PageView do
         Enum.find(List.flatten(regex_result), fn {idx, length} ->
           Enum.member?(idx..(idx + length - 1), i)
         end) ->
-          content_tag(:span, ch, style: "color: green; text-decoration: underline;")
+          content_tag(:span, ch)
 
         ch == "\n" ->
           tag(:br)
@@ -29,7 +29,9 @@ defmodule LiveViewDemoWeb.PageView do
     |> List.flatten()
     |> Enum.with_index()
     |> Enum.map(fn {match, i} ->
-      content_tag(:div, "[#{i}]: #{match}")
+      # content_tag(:div, "[#{i}]: #{match}")
+      "[#{i}]: #{match}<br />"
+      |> raw()
     end)
   end
 
@@ -38,7 +40,7 @@ defmodule LiveViewDemoWeb.PageView do
     |> Regex.named_captures(input)
     |> Enum.to_list()
     |> Enum.map(fn {k, v} ->
-      content_tag(:div, "#{k} => #{v}")
+      content_tag(:p, "#{k} => #{v}")
     end)
   end
 end
