@@ -10,8 +10,11 @@
       <section class="form">
         <div class="form-group">
           <label>Regex:</label>
-          <span>Don't worry about the starting `~r/` and ending `/`</span>
-          <%= textarea(f, :pattern, value: @pattern) %>
+          <span>
+            Do not include the starting <code>~r/</code>
+            or ending <code>/</code>
+          </span>
+          <%= text_input(f, :pattern, value: @pattern) %>
         </div>
 
         <div class="form-group">
@@ -111,7 +114,7 @@
 
           <h2>Results</h2>
           <div class="results-display">
-            <h3>Full:</h3>
+            <h3>Text:</h3>
             <p><%= full_results(@input, @compiled) %></p>
 
             <h3>Matches:</h3>
