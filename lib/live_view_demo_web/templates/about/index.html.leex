@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="content">
+    <header>
+      <h1>Elixir Regex</h1>
+    </header>
+
+    <h2>About</h2>
+    <p>
+      ElixirRegex.com was initially created for the Phoenix Phrenzy
+      contest to showcase Phoenix LiveView. It was something that I
+      had wanted to make for a while anyway, so this seemed like a
+      perfect time with the perfect technology to create it.
+      Hopefully you find it useful! I know I'll be using it regularly.
+    </p>
+    <p>
+      -geoffrey
+    </p>
+
+    <div style="display: flex; margin-top: 2em;">
+      <div style="width: 50%; margin-right: 1em;">
+        <h3>Geoffrey Lessel</h3>
+        <h4>made it work</h4>
+        <p>
+          Geo is the author of Phoenix in Action, a developer at
+          Planning Center, and a wanna-be renaissance man. Catch his
+          sweet tweets at @geolessel. If you're ever in the San Diego
+          area, hit him up!
+        </p>
+      </div>
+
+      <div style="width: 50%; margin-left: 1em;">
+        <h3>Josh Wilkerson</h3>
+        <h4>made it pretty</h4>
+        <p>
+          Josh is an awesome dude that makes stuff look awesome. He
+          lives in an awesome city and works for an awesome company.
+          I assume he has an awesome family.
+        </p>
+      </div>
+    </div>
+
+    <footer>
+      <nav>
+        <%= live_link "Home", to: Routes.live_path(@socket, LiveViewDemoWeb.PageLive, %{}) %>
+      </nav>
+      <p>© 2019 Geoffrey Lessel</p>
+    </footer>
+  </div>
+</div>
