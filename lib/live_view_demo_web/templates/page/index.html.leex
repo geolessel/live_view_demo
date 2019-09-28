@@ -1,47 +1,137 @@
 <%= f = form_for :regex, "#", [phx_change: :form_update] %>
+<div class="app">
 <div class="container">
   <div class="content">
-    <header>
-      <h1>Regex Checker</h1>
-    </header>
+    <div>
+      <header>
+        <h1>Elixir Regex</h1>
+      </header>
 
-    <section class="form">
-      <div class="form-group">
-        <label>Regex:</label>
-        <%= textarea(f, :pattern, value: @pattern) %>
-      </div>
+      <section class="form">
+        <div class="form-group">
+          <label>Regex:</label>
+          <span>Don't worry about the starting `~r/` and ending `/`</span>
+          <%= textarea(f, :pattern, value: @pattern) %>
+        </div>
 
-      <div class="form-group">
-        <label>Input:</label>
-        <%= textarea(f, :input, value: @input) %>
-      </div>
-    </section>
+        <div class="form-group">
+          <label>Modifiers:</label>
+          <div class="d-f mb-1" style="flex-direction: column;">
+            <div class="d-f">
+              <div class="mr-1 d-ib">
+                <%= checkbox(f, :unicode,
+                    name: "regex[options][]",
+                    hidden_input: false,
+                    checked_value: "u",
+                    value: Enum.find(@options, &(&1 == "u")),
+                    class: "checkbox checkbox-sm",
+                    id: "unicode") %>
+                <label for="unicode">Unicode (u)</label>
+              </div>
+              <div class="mr-1 d-ib">
+                <%= checkbox(f, :case,
+                    name: "regex[options][]",
+                    hidden_input: false,
+                    checked_value: "i",
+                    value: Enum.find(@options, &(&1 == "i")),
+                    class: "checkbox checkbox-sm",
+                    id: "case") %>
+                <label for="case">Case insensitive (i)</label>
+              </div>
+              <div class="mr-1 d-ib">
+                <%= checkbox(f, :dotmatch,
+                    name: "regex[options][]",
+                    hidden_input: false,
+                    checked_value: "s",
+                    value: Enum.find(@options, &(&1 == "s")),
+                    class: "checkbox checkbox-sm",
+                    id: "dotmatch") %>
+                <label for="dotmatch">Dot matches newlines (s)</label>
+              </div>
+              <div class="mr-1 d-ib">
+                <%= checkbox(f, :multiline,
+                    name: "regex[options][]",
+                    hidden_input: false,
+                    checked_value: "m",
+                    value: Enum.find(@options, &(&1 == "m")),
+                    class: "checkbox checkbox-sm",
+                    id: "multiline") %>
+                <label for="multiline">Multiline (m)</label>
+              </div>
+            </div>
+            <div class="d-f">
+              <div class="mr-1 d-ib">
+                <%= checkbox(f, :extended,
+                    name: "regex[options][]",
+                    hidden_input: false,
+                    checked_value: "x",
+                    value: Enum.find(@options, &(&1 == "x")),
+                    class: "checkbox checkbox-sm",
+                    id: "extended") %>
+                <label for="extended">Extended (x)</label>
+              </div>
+              <div class="mr-1 d-ib">
+                <%= checkbox(f, :firstline,
+                    name: "regex[options][]",
+                    hidden_input: false,
+                    checked_value: "f",
+                    value: Enum.find(@options, &(&1 == "f")),
+                    class: "checkbox checkbox-sm",
+                    id: "firstline") %>
+                <label for="firstline">Firstline (f)</label>
+              </div>
+              <div class="mr-1 d-ib">
+                <%= checkbox(f, :ungreedy,
+                    name: "regex[options][]",
+                    hidden_input: false,
+                    checked_value: "U",
+                    value: Enum.find(@options, &(&1 == "U")),
+                    class: "checkbox checkbox-sm",
+                    id: "ungreedy") %>
+                <label for="ungreedy">Ungreedy (U)</label>
+              </div>
+            </div>
+          </div>
+        </div>
 
-    <div class="alert"><%= @error %></div>
-
-    <%= if @regex do %>
-      <section class="results">
-        <h2>Results</h2>
-        <div class="results-display">
-          <h3>Full:</h3>
-          <p><%= full_results(@input, @regex) %></p>
-
-          <h3>Matches:</h3>
-          <p><%= matches(@input, @regex) %></p>
-
-          <%= if length(Regex.names(@regex)) > 0 do %>
-            <h3>Named Captures:</h3>
-            <p><%= named_captures(@input, @regex) %></p>
-          <% end %>
+        <div class="form-group">
+          <label>Input:</label>
+          <%= textarea(f, :input, value: @input) %>
         </div>
       </section>
-    <% end %>
+
+      <div class="alert"><%= @error %></div>
+
+      <%= if @compiled do %>
+        <section class="results mt-1">
+          <h2>Function Call</h2>
+          <div class="mb-2">
+            <p><%= regex_call(@input, @pattern, @options) %></p>
+          </div>
+
+          <h2>Results</h2>
+          <div class="results-display">
+            <h3>Full:</h3>
+            <p><%= full_results(@input, @compiled) %></p>
+
+            <h3>Matches:</h3>
+            <p><%= matches(@input, @compiled) %></p>
+
+            <%= if length(Regex.names(@compiled)) > 0 do %>
+              <h3>Named Captures:</h3>
+              <p><%= named_captures(@input, @compiled) %></p>
+            <% end %>
+          </div>
+        </section>
+      <% end %>
+    </div>
 
     <footer>
       <nav>
-        <a href="/about/">About</a>
+        <%= live_link "About", to: Routes.live_path(@socket, LiveViewDemoWeb.AboutLive, %{}) %>
       </nav>
       <p>© 2019 Geoffrey Lessel</p>
     </footer>
   </div>
+</div>
 </div>

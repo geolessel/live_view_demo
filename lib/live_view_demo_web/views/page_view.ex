@@ -23,6 +23,12 @@ defmodule LiveViewDemoWeb.PageView do
     end)
   end
 
+  def regex_call(input, regex, options) do
+    content_tag :p do
+      content_tag(:pre, "Regex.scan(~r/#{regex}/#{options}, \"#{input}\")", class: "mb-2")
+    end
+  end
+
   def matches(input, regex) do
     regex
     |> Regex.scan(input)
