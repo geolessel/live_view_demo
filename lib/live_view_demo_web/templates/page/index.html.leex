@@ -10,11 +10,11 @@
       <section class="form">
         <div class="form-group">
           <label>Regex:</label>
-          <span>
-            Do not include the starting <code>~r/</code>
-            or ending <code>/</code>
-          </span>
-          <%= text_input(f, :pattern, value: @pattern) %>
+          <div style="display:flex; align-items: center;">
+            <code style="margin-right: 0.5em;">~r/</code>
+            <%= text_input(f, :pattern, value: @pattern) %>
+            <code style="margin-left: 0.5em;">/</code>
+          </div>
         </div>
 
         <div class="form-group">
@@ -62,7 +62,7 @@
                 <label for="multiline">Multiline (m)</label>
               </div>
             </div>
-            <div class="d-f">
+            <div class="d-f" style="margin-top: 0.5em;">
               <div class="mr-1 d-ib">
                 <%= checkbox(f, :extended,
                     name: "regex[options][]",
