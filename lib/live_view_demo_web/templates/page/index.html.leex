@@ -19,80 +19,76 @@
 
         <div class="form-group">
           <label>Modifiers:</label>
-          <div class="d-f mb-1" style="flex-direction: column;">
-            <div class="d-f">
-              <div class="mr-1 d-ib">
-                <%= checkbox(f, :unicode,
-                    name: "regex[options][]",
-                    hidden_input: false,
-                    checked_value: "u",
-                    value: Enum.find(@options, &(&1 == "u")),
-                    class: "checkbox checkbox-sm",
-                    id: "unicode") %>
-                <label for="unicode">Unicode (u)</label>
-              </div>
-              <div class="mr-1 d-ib">
-                <%= checkbox(f, :case,
-                    name: "regex[options][]",
-                    hidden_input: false,
-                    checked_value: "i",
-                    value: Enum.find(@options, &(&1 == "i")),
-                    class: "checkbox checkbox-sm",
-                    id: "case") %>
-                <label for="case">Case insensitive (i)</label>
-              </div>
-              <div class="mr-1 d-ib">
-                <%= checkbox(f, :dotmatch,
-                    name: "regex[options][]",
-                    hidden_input: false,
-                    checked_value: "s",
-                    value: Enum.find(@options, &(&1 == "s")),
-                    class: "checkbox checkbox-sm",
-                    id: "dotmatch") %>
-                <label for="dotmatch">Dot matches newlines (s)</label>
-              </div>
-              <div class="mr-1 d-ib">
-                <%= checkbox(f, :multiline,
-                    name: "regex[options][]",
-                    hidden_input: false,
-                    checked_value: "m",
-                    value: Enum.find(@options, &(&1 == "m")),
-                    class: "checkbox checkbox-sm",
-                    id: "multiline") %>
-                <label for="multiline">Multiline (m)</label>
-              </div>
+          <div class="d-f mb-1" style="flex-direction: row; flex-wrap: wrap;">
+            <div class="mr-1 d-ib checkbox-wrap">
+              <%= checkbox(f, :unicode,
+                  name: "regex[options][]",
+                  hidden_input: false,
+                  checked_value: "u",
+                  value: Enum.find(@options, &(&1 == "u")),
+                  class: "checkbox checkbox-sm",
+                  id: "unicode") %>
+              <label for="unicode">Unicode (u)</label>
             </div>
-            <div class="d-f" style="margin-top: 0.5em;">
-              <div class="mr-1 d-ib">
-                <%= checkbox(f, :extended,
-                    name: "regex[options][]",
-                    hidden_input: false,
-                    checked_value: "x",
-                    value: Enum.find(@options, &(&1 == "x")),
-                    class: "checkbox checkbox-sm",
-                    id: "extended") %>
-                <label for="extended">Extended (x)</label>
-              </div>
-              <div class="mr-1 d-ib">
-                <%= checkbox(f, :firstline,
-                    name: "regex[options][]",
-                    hidden_input: false,
-                    checked_value: "f",
-                    value: Enum.find(@options, &(&1 == "f")),
-                    class: "checkbox checkbox-sm",
-                    id: "firstline") %>
-                <label for="firstline">Firstline (f)</label>
-              </div>
-              <div class="mr-1 d-ib">
-                <%= checkbox(f, :ungreedy,
-                    name: "regex[options][]",
-                    hidden_input: false,
-                    checked_value: "U",
-                    value: Enum.find(@options, &(&1 == "U")),
-                    class: "checkbox checkbox-sm",
-                    id: "ungreedy") %>
-                <label for="ungreedy">Ungreedy (U)</label>
-              </div>
+            <div class="mr-1 d-ib checkbox-wrap">
+              <%= checkbox(f, :case,
+                  name: "regex[options][]",
+                  hidden_input: false,
+                  checked_value: "i",
+                  value: Enum.find(@options, &(&1 == "i")),
+                  class: "checkbox checkbox-sm",
+                  id: "case") %>
+              <label for="case">Case insensitive (i)</label>
+            </div>
+            <div class="mr-1 d-ib checkbox-wrap">
+              <%= checkbox(f, :dotmatch,
+                  name: "regex[options][]",
+                  hidden_input: false,
+                  checked_value: "s",
+                  value: Enum.find(@options, &(&1 == "s")),
+                  class: "checkbox checkbox-sm",
+                  id: "dotmatch") %>
+              <label for="dotmatch">Dot matches newlines (s)</label>
+            </div>
+            <div class="mr-1 d-ib checkbox-wrap">
+              <%= checkbox(f, :multiline,
+                  name: "regex[options][]",
+                  hidden_input: false,
+                  checked_value: "m",
+                  value: Enum.find(@options, &(&1 == "m")),
+                  class: "checkbox checkbox-sm",
+                  id: "multiline") %>
+              <label for="multiline">Multiline (m)</label>
+            </div>
+            <div class="mr-1 d-ib checkbox-wrap">
+              <%= checkbox(f, :extended,
+                  name: "regex[options][]",
+                  hidden_input: false,
+                  checked_value: "x",
+                  value: Enum.find(@options, &(&1 == "x")),
+                  class: "checkbox checkbox-sm",
+                  id: "extended") %>
+              <label for="extended">Extended (x)</label>
+            </div>
+            <div class="mr-1 d-ib checkbox-wrap">
+              <%= checkbox(f, :firstline,
+                  name: "regex[options][]",
+                  hidden_input: false,
+                  checked_value: "f",
+                  value: Enum.find(@options, &(&1 == "f")),
+                  class: "checkbox checkbox-sm",
+                  id: "firstline") %>
+              <label for="firstline">Firstline (f)</label>
+            </div>
+            <div class="mr-1 d-ib checkbox-wrap">
+              <%= checkbox(f, :ungreedy,
+                  name: "regex[options][]",
+                  hidden_input: false,
+                  checked_value: "U",
+                  value: Enum.find(@options, &(&1 == "U")),
+                  class: "checkbox checkbox-sm",
+                  id: "ungreedy") %>
+              <label for="ungreedy">Ungreedy (U)</label>
             </div>
           </div>
         </div>
