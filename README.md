@@ -1,8 +1,12 @@
-# (App Name Here)
+# Elixir Regex
 
 This is my entry in [Phoenix Phrenzy](https://phoenixphrenzy.com), showing off what [Phoenix](https://phoenixframework.org/) and [LiveView](https://github.com/phoenixframework/phoenix_live_view) can do.
 
-![App Name Here preview](assets/static/images/preview.gif "App Name Here")
+Elixir Regex is a regular expression checker for Elixir. Simply put in your text and the expression you'd like to use as the regular expression, enable some optional modifiers, and see the results in real time. This application may not be very flashy, but it *is* very useful.
+
+I've wanted to make this tool for a while now and Phoenix Phrenzy seemed like the best time to make it!
+
+<img src="assets/static/images/preview.gif" alt="Elixir Regex" width=400 title="Elixir Regex preview" />
 
 # Phrenzy Instructions
 
