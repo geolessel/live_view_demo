@@ -1,6 +1,5 @@
 defmodule LiveViewDemoWeb.PageLive do
   use Phoenix.LiveView
-  require Logger
 
   def render(assigns) do
     LiveViewDemoWeb.PageView.render("index.html", assigns)
@@ -24,9 +23,6 @@ defmodule LiveViewDemoWeb.PageLive do
     pattern = Map.get(params, "pattern")
     input = Map.get(params, "input")
     options = Map.get(params, "options", [])
-    Logger.info(inspect(params))
-    Logger.info(inspect(options, label: "options"))
-    Logger.info(Enum.member?(options, "f"))
 
     case Regex.compile(pattern, Enum.join(options)) do
       {:ok, compiled} ->
