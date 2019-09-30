@@ -3,7 +3,13 @@ defmodule LiveViewDemoWeb.Endpoint do
 
   socket "/socket", LiveViewDemoWeb.UserSocket,
     websocket: true,
-    longpoll: false
+    longpoll: false,
+    check_origin: [
+      "localhost",
+      "127.0.0.1",
+      "https://elixirregex.com",
+      "https://offbeat-adventurous-mussaurus.gigalixirapp.com"
+    ]
 
   socket "/live", Phoenix.LiveView.Socket
 
