@@ -25,7 +25,7 @@ defmodule LiveViewDemoWeb.PageView do
 
   def regex_call(input, regex, options) do
     content_tag :p do
-      content_tag(:pre, "Regex.scan(~r/#{regex}/#{options}, \"#{input}\")", class: "mb-2")
+      content_tag(:pre, "Regex.scan(~r/#{regex}/#{options}, \"#{input}\")")
     end
   end
 
@@ -35,7 +35,6 @@ defmodule LiveViewDemoWeb.PageView do
     |> List.flatten()
     |> Enum.with_index()
     |> Enum.map(fn {match, i} ->
-      # content_tag(:div, "[#{i}]: #{match}")
       "[#{i}]: #{match}<br />"
       |> raw()
     end)
@@ -44,9 +43,16 @@ defmodule LiveViewDemoWeb.PageView do
   def named_captures(input, regex) do
     regex
     |> Regex.named_captures(input)
+    |> case do
+      nil ->
+        []
+
+      key ->
+        key
+        |> Enum.map(fn {k, v} ->
+          content_tag(:p, "#{k} => #{v}")
+        end)
+    end
     |> Enum.to_list()
-    |> Enum.map(fn {k, v} ->
-      content_tag(:p, "#{k} => #{v}")
-    end)
   end
 end
