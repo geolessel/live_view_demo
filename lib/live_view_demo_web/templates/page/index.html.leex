@@ -9,7 +9,7 @@
 
       <section class="form">
         <div class="form-group">
-          <label>Regex:</label>
+          <label>Regex Pattern:</label>
           <div style="display:flex; align-items: center;">
             <code style="margin-right: 0.5em;">~r/</code>
             <%= text_input(f, :pattern, value: @pattern) %>
@@ -22,70 +22,70 @@
           <div class="d-f mb-1" style="flex-direction: row; flex-wrap: wrap;">
             <div class="mr-1 d-ib checkbox-wrap">
               <%= checkbox(f, :unicode,
-                  name: "regex[options][]",
+                  name: "regex[modifiers][]",
                   hidden_input: false,
                   checked_value: "u",
-                  value: Enum.find(@options, &(&1 == "u")),
+                  value: Enum.find(@modifiers, &(&1 == "u")),
                   class: "checkbox checkbox-sm",
                   id: "unicode") %>
               <label for="unicode">Unicode (u)</label>
             </div>
             <div class="mr-1 d-ib checkbox-wrap">
               <%= checkbox(f, :case,
-                  name: "regex[options][]",
+                  name: "regex[modifiers][]",
                   hidden_input: false,
                   checked_value: "i",
-                  value: Enum.find(@options, &(&1 == "i")),
+                  value: Enum.find(@modifiers, &(&1 == "i")),
                   class: "checkbox checkbox-sm",
                   id: "case") %>
               <label for="case">Case insensitive (i)</label>
             </div>
             <div class="mr-1 d-ib checkbox-wrap">
               <%= checkbox(f, :dotmatch,
-                  name: "regex[options][]",
+                  name: "regex[modifiers][]",
                   hidden_input: false,
                   checked_value: "s",
-                  value: Enum.find(@options, &(&1 == "s")),
+                  value: Enum.find(@modifiers, &(&1 == "s")),
                   class: "checkbox checkbox-sm",
                   id: "dotmatch") %>
               <label for="dotmatch">Dot matches newlines (s)</label>
             </div>
             <div class="mr-1 d-ib checkbox-wrap">
               <%= checkbox(f, :multiline,
-                  name: "regex[options][]",
+                  name: "regex[modifiers][]",
                   hidden_input: false,
                   checked_value: "m",
-                  value: Enum.find(@options, &(&1 == "m")),
+                  value: Enum.find(@modifiers, &(&1 == "m")),
                   class: "checkbox checkbox-sm",
                   id: "multiline") %>
               <label for="multiline">Multiline (m)</label>
             </div>
             <div class="mr-1 d-ib checkbox-wrap">
               <%= checkbox(f, :extended,
-                  name: "regex[options][]",
+                  name: "regex[modifiers][]",
                   hidden_input: false,
                   checked_value: "x",
-                  value: Enum.find(@options, &(&1 == "x")),
+                  value: Enum.find(@modifiers, &(&1 == "x")),
                   class: "checkbox checkbox-sm",
                   id: "extended") %>
               <label for="extended">Extended (x)</label>
             </div>
             <div class="mr-1 d-ib checkbox-wrap">
               <%= checkbox(f, :firstline,
-                  name: "regex[options][]",
+                  name: "regex[modifiers][]",
                   hidden_input: false,
                   checked_value: "f",
-                  value: Enum.find(@options, &(&1 == "f")),
+                  value: Enum.find(@modifiers, &(&1 == "f")),
                   class: "checkbox checkbox-sm",
                   id: "firstline") %>
               <label for="firstline">Firstline (f)</label>
             </div>
             <div class="mr-1 d-ib checkbox-wrap">
               <%= checkbox(f, :ungreedy,
-                  name: "regex[options][]",
+                  name: "regex[modifiers][]",
                   hidden_input: false,
                   checked_value: "U",
-                  value: Enum.find(@options, &(&1 == "U")),
+                  value: Enum.find(@modifiers, &(&1 == "U")),
                   class: "checkbox checkbox-sm",
                   id: "ungreedy") %>
               <label for="ungreedy">Ungreedy (U)</label>
@@ -105,7 +105,7 @@
         <section class="results mt-1">
           <h2>Function Call</h2>
           <div class="mb-2">
-            <p><%= regex_call(@input, @pattern, @options) %></p>
+            <p><%= regex_call(@input, @pattern, @modifiers) %></p>
           </div>
 
           <h2>Results</h2>
