@@ -104,7 +104,7 @@
       <%= if @compiled do %>
         <section class="results mt-1">
           <h2>Function Call</h2>
-          <div class="mb-2">
+          <div class="mb-2" style="overflow: scroll;">
             <p><%= regex_call(@input, @pattern, @modifiers) %></p>
           </div>
 

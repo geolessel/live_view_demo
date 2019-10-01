@@ -30,11 +30,6 @@ hr {
     overflow: visible
 }
 
-pre {
-    font-family: monospace, monospace;
-    font-size: 1em
-}
-
 a {
     background-color: transparent
 }
@@ -358,7 +353,10 @@ pre {
     display: inline-block;
     border-radius: 4px;
     padding: .5em .75em;
-    margin-top: 0
+    margin-top: 0;
+    margin-bottom: 0;
+    font-family: monospace, monospace;
+    font-size: 1em
 }
 
 .columns {
