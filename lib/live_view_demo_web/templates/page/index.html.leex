@@ -1,7 +1,4 @@
 <%= f = form_for :regex, "#", [phx_change: :form_update] %>
-<div class="app">
-<div class="container">
-  <div class="content">
     <div>
       <header>
         <h1>Elixir Regex</h1>
@@ -124,13 +121,4 @@
         </section>
       <% end %>
     </div>
-
-    <footer>
-      <nav>
-        <%= live_link "About", to: Routes.live_path(@socket, LiveViewDemoWeb.AboutLive, %{}) %>
-      </nav>
-      <p>© 2019 Geoffrey Lessel</p>
-    </footer>
-  </div>
-</div>
-</div>
+  </form>

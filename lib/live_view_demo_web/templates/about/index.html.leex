@@ -50,9 +50,9 @@
 
     <footer>
       <nav>
-        <%= live_link "Home", to: Routes.live_path(@socket, LiveViewDemoWeb.PageLive, %{}) %>
+        <%= live_redirect "Home", to: Routes.live_path(@socket, LiveViewDemoWeb.PageLive, %{}) %>
       </nav>
-      <p>© 2019 Geoffrey Lessel</p>
+      <p>© 2019&ndash;2020 Geoffrey Lessel</p>
     </footer>
   </div>
 </div>

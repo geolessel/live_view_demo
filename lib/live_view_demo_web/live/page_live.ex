@@ -1,11 +1,11 @@
 defmodule LiveViewDemoWeb.PageLive do
-  use Phoenix.LiveView
+  use LiveViewDemoWeb, :live_view
 
   def render(assigns) do
     LiveViewDemoWeb.PageView.render("index.html", assigns)
   end
 
-  def mount(_session, socket) do
+  def mount(_params, _session, socket) do
     {:ok,
      assign(socket, %{
        compiled: nil,
@@ -49,7 +49,7 @@ defmodule LiveViewDemoWeb.PageLive do
   end
 
   def handle_event("form_update", %{"regex" => %{"pattern" => ""}}, socket),
-    do: {:noreply, live_redirect(assign(socket, compiled: nil), to: "/")}
+    do: {:noreply, push_patch(assign(socket, compiled: nil), to: "/")}
 
   def handle_event("form_update", %{"regex" => params}, socket) do
     query =
@@ -67,10 +67,10 @@ defmodule LiveViewDemoWeb.PageLive do
 
     case String.length(query) do
       0 ->
-        {:noreply, live_redirect(socket, to: "/")}
+        {:noreply, push_patch(socket, to: "/")}
 
       _ ->
-        {:noreply, live_redirect(socket, to: "/?#{query}")}
+        {:noreply, push_patch(socket, to: "/?#{query}")}
     end
   end
 end

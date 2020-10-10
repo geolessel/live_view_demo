@@ -11,7 +11,8 @@ defmodule LiveViewDemo.Application do
       # Start the Ecto repository
       # LiveViewDemo.Repo,
       # Start the endpoint when the application starts
-      LiveViewDemoWeb.Endpoint
+      LiveViewDemoWeb.Endpoint,
+      {Phoenix.PubSub, [name: LiveViewDemo.PubSub, adapter: Phoenix.PubSub.PG2]}
       # Starts a worker by calling: LiveViewDemo.Worker.start_link(arg)
       # {LiveViewDemo.Worker, arg},
     ]
