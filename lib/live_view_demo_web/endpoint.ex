@@ -1,11 +1,18 @@
 defmodule LiveViewDemoWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :live_view_demo
 
+  @session_options [
+    store: :cookie,
+    key: "_elixir_regex_key",
+    signing_salt: "lluvoo38lvloa8dh3o80387vyasdo74"
+  ]
+
   socket "/socket", LiveViewDemoWeb.UserSocket,
     websocket: true,
     longpoll: false
 
-  socket "/live", Phoenix.LiveView.Socket
+  socket "/live", Phoenix.LiveView.Socket,
+    websocket: [connect_info: [session: @session_options]]
 
   # Serve at "/" the static files from "priv/static" directory.
   #
@@ -39,10 +46,18 @@ defmodule LiveViewDemoWeb.Endpoint do
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
   # Set :encryption_salt if you would also like to encrypt it.
-  plug Plug.Session,
-    store: :cookie,
-    key: "_live_view_demo_key",
-    signing_salt: "pIQrFsE9"
+  plug Plug.Session, @session_options
 
   plug LiveViewDemoWeb.Router
+
+  def init(:supervisor, config) do
+    {:ok,
+     Keyword.merge(config,
+       url: [
+         host: System.get_env("VIRTUAL_HOST", "www.elixirregex.com"),
+         port: 443,
+         scheme: "https"
+       ]
+     )}
+  end
 end
