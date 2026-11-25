@@ -38,3 +38,6 @@ npm-debug.log
 
 # macOS Finder metadata
 .DS_Store
+
+# Local environment and deploy secrets loaded by direnv.
+.envrc

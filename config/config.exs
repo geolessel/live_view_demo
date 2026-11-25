@@ -27,8 +27,10 @@ config :phoenix_live_view,
   root_tag_attribute: "phx-r"
 
 # Configure esbuild (the version is required)
+config :esbuild, path: System.get_env("MIX_ESBUILD_PATH")
+
 config :esbuild,
-  version: "0.25.4",
+  version: "0.28.2",
   elixir_regex: [
     args:
       ~w(js/app.js css/app.css --bundle --target=es2022 --outdir=../priv/static/assets --external:/fonts/* --external:/images/* --alias:@=.),

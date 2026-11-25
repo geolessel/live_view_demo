@@ -16,6 +16,15 @@ You need Elixir and Erlang. If you use [asdf](https://asdf-vm.com) or [mise](htt
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
+`mix setup` downloads esbuild from the npm registry. If that is not
+possible, install esbuild yourself and set `MIX_ESBUILD_PATH` to it, for
+example in an `.envrc` (ignored by git) for direnv:
+
+```sh
+npm install -g esbuild
+echo 'export MIX_ESBUILD_PATH="$(which esbuild)"' >> .envrc
+```
+
 ## Production
 
 The app needs these environment variables at runtime:
