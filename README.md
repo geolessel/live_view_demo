@@ -1,3 +1,7 @@
+> [!IMPORTANT]
+> Elixir Regex now lives at **[geolessel/elixirregex](https://github.com/geolessel/elixirregex)**, rewritten on current Elixir and Phoenix.
+> This repository is the original 2019 Phoenix Phrenzy version and is archived.
+
 # Elixir Regex
 
 This is my entry in [Phoenix Phrenzy](https://phoenixphrenzy.com), showing off what [Phoenix](https://phoenixframework.org/) and [LiveView](https://github.com/phoenixframework/phoenix_live_view) can do.
