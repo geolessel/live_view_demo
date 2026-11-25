@@ -14,6 +14,12 @@ defmodule ElixirRegexWeb.Router do
     plug :accepts, ["json"]
   end
 
+  # kamal-proxy polls this before it sends traffic to a new container. It
+  # skips the browser pipeline so health checks do not create sessions.
+  scope "/", ElixirRegexWeb do
+    get "/up", HealthController, :show
+  end
+
   scope "/", ElixirRegexWeb do
     pipe_through :browser
 
