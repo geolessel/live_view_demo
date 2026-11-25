@@ -1,0 +1,45 @@
+# Kamal 2 deploy configuration: https://kamal-deploy.org
+#
+# GitHub Actions builds and pushes the image for each commit on main, so
+# deploy a commit only after its CI run has passed:
+#
+#     kamal deploy --skip-push
+#
+# The image tag is the full git SHA of HEAD, so deploy from a clean checkout
+# of the commit that CI built.
+#
+# The server's host name and the Docker Hub account come from the
+# environment, like the secrets, so that this file names neither.
+<% registry_user = ENV.fetch("KAMAL_REGISTRY_USERNAME") %>
+service: elixirregex
+image: <%= registry_user %>/elixirregex
+
+servers:
+  web:
+    - <%= ENV.fetch("KAMAL_SERVER_HOST") %>
+
+ssh:
+  user: deploy
+
+proxy:
+  ssl: true
+  hosts:
+    - elixirregex.com
+    - www.elixirregex.com
+  app_port: 4000
+  healthcheck:
+    path: /up
+
+registry:
+  username: <%= registry_user %>
+  password:
+    - KAMAL_REGISTRY_PASSWORD
+
+builder:
+  arch: amd64
+
+env:
+  clear:
+    PHX_HOST: www.elixirregex.com
+  secret:
+    - SECRET_KEY_BASE
